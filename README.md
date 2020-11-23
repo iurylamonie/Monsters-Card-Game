@@ -5,6 +5,8 @@
 1. Em `iAcoesMonstros`: Mudar os retornos de `boolean` para `void`.
 2. Mudar as constantes de todos os `ENUMs` para ficar igual aos do projeto.
 3. Mudar em `iAcoesMonstros` a assinatura da função `mudarPosicaoBatalha` o parametro `carta` para `posicaoCartaTab`.
+4. Remover o atributo `efeitofoiAtivado` na classe `MonstroEfeito`, pois a classe `Campo` possui um atributo similar, `zonaEfeitoMonstros`.
+5. Adicionar os parametros: `Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo` na função `ativarEfeito` da Interface `iEfeitos`.
 
 
 ## Requisitos:

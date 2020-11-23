@@ -68,8 +68,26 @@ public class Monstro extends Carta {
 	private TipoClasse classe;
 	private PosicaoMonstro posicaoMonstro;
 	
-	public Monstro(String nome, String descricao, CartaLayaout layaout) {
+	/**
+	 * Construtor padrão da classe monstor. A atributo turnoInvocacao é iniciado com -1.
+	 * @param nome Nome da carta.
+	 * @param descricao Descrição da carta. Em cartas com efeito deve se informado o que a carta faz e condições de execução.
+	 * @param layaout Layaout da carta.
+	 * @param nivel Nivel do monstro.
+	 * @param atk Ataque do monstro.
+	 * @param def Defesa do monstro.
+	 * @param classe Classe da carta monstro.
+	 * @param posicaoBatalhao Posição de batalha que o monstro está.
+	 */
+	public Monstro(String nome, String descricao, CartaLayaout layaout,
+			       int nivel, int atk, int def,
+			       TipoClasse classe, PosicaoMonstro posicaoBatalhao) {
 		super(nome, descricao, layaout);
+		this.atk = atk;
+		this.def = def;
+		this.turnoInvocacao = -1;
+		this.classe = classe;
+		this.posicaoMonstro = posicaoBatalhao;
 	}
 
 }
