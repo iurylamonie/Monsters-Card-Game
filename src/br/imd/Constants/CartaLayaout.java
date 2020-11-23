@@ -1,4 +1,10 @@
-package br.imd.Models;
+package br.imd.Constants;
+
+/**
+ * 
+ * @author Iury
+ *
+ */
 
 public enum CartaLayaout {
 	MONSTRO_NORMAL,
