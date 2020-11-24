@@ -8,7 +8,7 @@ public class Baralho {
 	private Stack<Carta> cartas;
 	
 	public Baralho() {
-		cartas = new Vector<Carta>();
+		cartas = new Stack<Carta>();
 	}
 	
 	public String getNome() {
@@ -24,7 +24,7 @@ public class Baralho {
 		cartas.add(carta);
 	}
 	
-	public Vector<Carta> getCartas(){
+	public Stack<Carta> getCartas(){
 		return cartas;
 	}
 	
