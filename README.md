@@ -12,9 +12,11 @@ Iury
 5. Adicionar os parametros: `Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo` na função `ativarEfeito` da Interface `iEfeitos`.
 7. Modificar o retorno da funções `invocarMonstro`, `invocarMAgia` e `mudarPosicaoBatalha` de `boolean` para `void` na classe `Jogador`
 Tiago
-8. Modificar classe `Campo`: Adicionar funções ` public void setEspacoMonstro( Monstro monstro, int posicao) ` , `public Magia getEspacoMagia( int posicao )` , `public void setEspacoMagia`, `public Monstro getEspacoMonstro( int posicao )`
+8. Modificar classe `Campo`: Adicionar funções ` public void setEspacoMonstro( Monstro monstro, int posicao) ` , `public Magia getEspacoMagia( int posicao )` , `public void setEspacoMagia`, `public Monstro getEspacoMonstro( int posicao )` , `public boolean isZonaEfeitoMonstro(int posicao)`, `public void setZonaEspacoEfeitosMonstros(int posicao, boolean valor)`, `public int espacoZonaMonstroVazio()`, `public int espacoZonaMagiaVazio()`
 
-9. Modificar classe Tabuleiro: Modificar funções: `public void ativarEfeitoMostro(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo)`
+9. Modificar classe Tabuleiro: Modificar funções: `public void ativarEfeitoMostro(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo)`,  `public void enviarCemiterio( Carta carta, int posicaoCamp )` -- Adicionar funções: `public void colocarMagiaTabuleiro(int magia)`
+
+10. Modifica classe `MagiaEquipamento`: Adicionar: atributo `monstroEquipado`
 
 ## Requisitos:
 
