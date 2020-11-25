@@ -36,10 +36,17 @@ public class Jogador {
 	}
 	
 	
+	/**
+	 * Muda a posição de batalha de um monstro no tabuleiro.
+	 * @param carta
+	 */
 	public void mudarPosicaoBatalha(Monstro carta) {
 		this.tabuleiro.mudarPosicao(carta.getLocalizacaoTabuleiro());
 	}
-
+	
+	/**
+	 * Remove uma carta do topo do baralho e coloca na mão do jogador.
+	 */
 	public void comprarCarta() {
 		this.tabuleiro.comprar();
 	}
