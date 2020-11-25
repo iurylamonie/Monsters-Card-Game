@@ -1,6 +1,7 @@
 package br.imd.Models.Interfaces;
 
 import br.imd.Models.Jogador;
+import br.imd.Models.Carta;
 /**
  * Interface que contém todas os efeitos comuns entre as cartas.
  * @author Iury
@@ -10,15 +11,16 @@ import br.imd.Models.Jogador;
 public interface iEfeitos {
 	
 	/**
-	 * Função utilizada para ativar os efeitos relacionadas a carta.
+	 * Função utilizada para ativar os efeitos relacionadas à uma determinada carta
+	 * e possiveis cartas alvos desse efeito.
 	 * @param jogadorAtivou jogador que ativou a carta.
-	 * @param posicaoCartaAtivou posicao da carta que foi ativada.
-	 * @param jogadorAlvo possivel jogador alvo da ativação do efeito.
-	 * @param posicaoCartaAlvo posicao da possivel carta que vai ser alvo do efieto
+	 * @param cartaAtivada carta que vai ter o efeito ativado.
+	 * @param jogadorAlvo jogador alvo do efeito.
+	 * @param cartaAlvo carata alvo do efeito.
 	 * 
 	 */
-	void ativarEfeito(Jogador jogadorAtivou, int posicaoCartaAtivou,
-			Jogador  jogadorAlvo, int posicaoCartaAlvo);
+	void ativarEfeito(Jogador jogadorAtivou, Carta cartaAtivada,
+			Jogador  jogadorAlvo, Carta cartaAlvo);
 	
 	/**
 	 * Função utilizada para desativar os efeitos relacionadas a carta.

@@ -1,6 +1,6 @@
 package br.imd.Models.Interfaces;
 
-import br.imd.Models.Jogador;
+import br.imd.Models.Monstro;
 /**
  * Interface que contém efeitos comuns entre os monstros de efeito.
  * @author Iury
@@ -26,7 +26,7 @@ public interface iEfeitosMonstros extends iEfeitos {
 	 * @param jogador jogador inimigo.
 	 * @param posicaoCartaTab posicao da carta no tabuleiro inimimgo.
 	 */
-	void diminuirATKInimigo(Jogador jogador, int posicaoCartaTab );
+	void diminuirATKInimigo( Monstro monstroAlvo );
 	
 	/**
 	 * Diminui a DEF do monstro  inimigo que é alvo desse efeito
@@ -34,5 +34,5 @@ public interface iEfeitosMonstros extends iEfeitos {
 	 * @param jogador jogador inimigo.
 	 * @param posicaoCartaTab posicao da carta no tabuleiro inimimgo.
 	 */
-	void diminuirDEFInimigo(Jogador jogador, int posicaoCartaTab );
+	void diminuirDEFInimigo( Monstro monstroAlvo );
 }

@@ -21,7 +21,7 @@ public class MagiaNormal extends Magia implements iEfeitosMagias {
 
 	
 	@Override
-	public void ativarEfeito(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador jogadorAlvo, int posicaoCartaAlvo) {
+	public void ativarEfeito(Jogador jogadorAtivou, Carta cartaAtivou, Jogador jogadorAlvo, Carta cartaAlvo) {
 		switch(this.tipo) {
 		case GANHAR_VIDA:
 			this.ganharPV(jogadorAlvo);

@@ -45,7 +45,7 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 	 * @param posicaoCartaAlvo possivel posicao da carta que foi alvo do efeito da carta monstro.
 	 */
 	@Override
-	public void ativarEfeito(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo) {
+	public void ativarEfeito(Jogador jogadorAtivou, Carta cartaAtivada, Jogador  jogadorAlvo, Carta cartaAlvo) {
 	
 		switch(this.tipoEfeito) {
 		
@@ -58,11 +58,11 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 			break;
 		
 		case DIMINUIR_ATK_INIMIGO:
-			this.diminuirATKInimigo(jogadorAlvo, posicaoCartaAlvo);
+			this.diminuirATKInimigo( (Monstro) cartaAlvo );
 			break;
 		
 		case DIMINUIR_DEF_INIMIGO:
-			this.diminuirDEFInimigo(jogadorAlvo, posicaoCartaAtivou);
+			this.diminuirDEFInimigo( (Monstro) cartaAlvo);
 			break;
 		}
 		
@@ -111,23 +111,21 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 	/**
 	 * Diminui o ataque de uma carta monstro localizada no tabuleiro de acordo com o valor que o monstro
 	 * que ativou o efeito possue em seu atributo pontos.
-	 * @param jogador jogador alvo da diminuição de pontos.
-	 * @param posicaoCartaTab posição da carta monstro alvo localizada no tabuleiro.
+	 * @param monstroAlvo monstro que vai ser alvo do efeito.
 	 */
 	@Override
-	public void diminuirATKInimigo(Jogador jogador, int posicaoCartaTab) {
-		// TODO é necessario ter as classe tabuleiro e jogador implementadas.
+	public void diminuirATKInimigo( Monstro monstroAlvo) {
+		monstroAlvo.setAtk( monstroAlvo.getAtk() - this.pontos );
 		
 	}
 	
 	/**
 	 * Diminui o ataque de uma carta monstro localizada no tabuleiro de acordo com o valor que o monstro
 	 * que ativou o efeito possue em seu atributo pontos
-	 * @param jogador jogador alvo da diminuição de pontos.
-	 * @param posicaoCartaTab posição da carta monstro alvo localizada no tabuleiro.
+	 * @param monstroAlvo monstro que vai ser alvo do efeito.
 	 */
 	@Override
-	public void diminuirDEFInimigo(Jogador jogador, int posicaoCartaTab) {
+	public void diminuirDEFInimigo( Monstro monstroAlvo) {
 		// TODO é necessario ter as classes tabuleiro e jogador implementadas.
 		
 	}

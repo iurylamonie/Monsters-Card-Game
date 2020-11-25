@@ -26,13 +26,13 @@ public class MagiaEquipamento extends Magia implements iEfeitosEquipamento {
 	}
 
 	@Override
-	public void ativarEfeito(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador jogadorAlvo, int posicaoCartaAlvo) {
+	public void ativarEfeito(Jogador jogadorAtivou, Carta cartaAtivou, Jogador jogadorAlvo, Carta cartaAlvo ) {
 		switch(this.tipoEquipamento) {
 		case AUMENTAR_ATK:
-			this.aumentarATK(jogadorAlvo, posicaoCartaAlvo);
+			this.aumentarATK((Monstro) cartaAlvo);
 			break;
 		case AUMENTAR_DEF:
-			this.aumentarDEF(jogadorAlvo, posicaoCartaAlvo);
+			this.aumentarDEF((Monstro) cartaAlvo);
 			break;
 		}
 
@@ -53,15 +53,13 @@ public class MagiaEquipamento extends Magia implements iEfeitosEquipamento {
 	}
 
 	@Override
-	public void aumentarATK(Jogador jogador, int posicaoCartaTab) {
-		this.monstroEquipado = jogador.getTabuleiro().getCampo().getEspacoMonstro(posicaoCartaTab);
-		this.monstroEquipado.setAtk(this.monstroEquipado.getAtk() + this.getPontos());
+	public void aumentarATK( Monstro monstroAlvo ) {
+		monstroAlvo.setAtk( monstroAlvo.getAtk() + this.getPontos());
 	}
 
 	@Override
-	public void aumentarDEF(Jogador jogador, int posicaoCartaTab) {
-		this.monstroEquipado = jogador.getTabuleiro().getCampo().getEspacoMonstro(posicaoCartaTab);
-		this.monstroEquipado.setDef(this.monstroEquipado.getDef() - this.getPontos());
+	public void aumentarDEF(Monstro monstroAlvo) {
+		monstroAlvo.setDef( monstroAlvo.getDef() + this.getPontos() );
 	}
 	
 	public Monstro getMonstroEquipado() {

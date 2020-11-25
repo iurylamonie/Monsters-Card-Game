@@ -41,26 +41,31 @@ public class Tabuleiro {
 	 * Ativa o efeito de um monstro localizado no campo de acordo 
 	 * com o tipo de efeito do monstro.
 	 * @param jogadorAtivou jogador que é dono da carta monstro que o ativou.
-	 * @param posicaoCartaAtivou posicao da carta que o efeito foi ativado.
+	 * @param cartaAtivou carta que ativou o efeito.
 	 * @param jogadorAlvo possivel jogador alvo do efeito da carta monstro.
-	 * @param posicaoCartaAlvo possivel posicao da carta que foi alvo do efeito da carta monstro.
+	 * @param cartaAlvo carta alvo do efeito.
 	 */
-	public void ativarEfeitoMostro(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo) {
-		Carta cartaEfeito = this.campo.getEspacoMonstro(posicaoCartaAtivou );
-		if( cartaEfeito instanceof MonstroEfeito ) {
-			((MonstroEfeito) cartaEfeito).ativarEfeito(jogadorAtivou, posicaoCartaAtivou, jogadorAlvo, posicaoCartaAlvo);
-			
+	public void ativarEfeitoMostro(Jogador jogadorAtivou, Carta cartaAtivou, Jogador  jogadorAlvo, Carta cartaAlvo) {
+		if( cartaAtivou instanceof MonstroEfeito ) {
+			((MonstroEfeito) cartaAtivou).ativarEfeito(jogadorAtivou, cartaAtivou, jogadorAlvo, cartaAlvo);	
 		}
 	}
 	
 	/**
-	 * Ativa o efeito de uma marca magica no campo.
-	 * @param jogadorAtivou jogador que ativou o efeito.
-	 * @param posicaoCartaAtivou posição da carta magica na zona de magias.
+	 * Ativa o efeito de uma carta magica localizado no campo de acordo 
+	 * com o tipo de efeito da magia.
+	 * @param jogadorAtivou jogador que é dono da carta magica que o ativou.
+	 * @param cartaAtivou carta que ativou o efeito.
+	 * @param jogadorAlvo possivel jogador alvo do efeito da carta magica.
+	 * @param cartaAlvo carta alvo do efeito.
 	 */
-	public void ativarEfeitoMagia(Jogador jogadorAtivou, int posicaoCartaAtivou, Jogador  jogadorAlvo, int posicaoCartaAlvo) {
-		//Carta cartaMagia = this.campo.getEspacoMagia( posicaoCartaAtivou );
-		// TODO precisa das cartas Magias Feitas
+	public void ativarEfeitoMagia(Jogador jogadorAtivou, Carta cartaAtivou, Jogador  jogadorAlvo, Carta cartaAlvo) {
+		if( cartaAtivou instanceof MagiaEquipamento ) {
+			((MagiaEquipamento) cartaAtivou).ativarEfeito(jogadorAtivou, cartaAtivou, jogadorAlvo, cartaAlvo);
+		}
+		else if( cartaAtivou instanceof MagiaNormal) {
+			((MagiaNormal) cartaAtivou).ativarEfeito(jogadorAtivou, cartaAtivou, jogadorAlvo, cartaAlvo);
+		}
 	}
 	
 	/**
@@ -68,15 +73,14 @@ public class Tabuleiro {
 	 * na zona de monstros.
 	 * @param posicaoMonstroCamp
 	 */
-	public void mudarPosicao(int posicaoMonstroCamp ) {
+	public void mudarPosicao( Monstro monstro) {
 		
-		PosicaoMonstro pm = this.campo.getEspacoMonstro(posicaoMonstroCamp).getPosicaoMonstro();
-		switch(pm) {
+		switch(monstro.getPosicaoMonstro()) {
 		case ATAQUE:
-			this.campo.getEspacoMonstro(posicaoMonstroCamp).setPosicaoMonstro(PosicaoMonstro.DEFESA);
+			monstro.setPosicaoMonstro(PosicaoMonstro.DEFESA);
 			break;
 		case DEFESA:
-			this.campo.getEspacoMonstro(posicaoMonstroCamp).setPosicaoMonstro(PosicaoMonstro.ATAQUE);
+			monstro.setPosicaoMonstro(PosicaoMonstro.ATAQUE);
 			break;
 		case NAO_INVOCADO:
 			//TODO o que fazer quando o monstro não teve seu campo alterado?
@@ -86,21 +90,24 @@ public class Tabuleiro {
 	}
 	
 	/**
-	 * Envia uma carta que está localizada no campo para o cemiterio.
-	 * @param posicaoCartaCamp
+	 * Envia uma carta que está no tabuleiro no para o cemiterio.
+	 * @param carta a carta
 	 */
-	public void enviarCemiterio( Carta carta, int posicaoCamp ) {
+	public void enviarCemiterio( Carta carta) {
 		
 		this.cemiterio.add(carta);
-		
 		if( carta instanceof Monstro ) {
-			this.campo.setEspacoMonstro(null, posicaoCamp);
+			this.campo.setEspacoMonstro(null, carta.getLocalizacao());
+			((Monstro) carta).setPosicaoMonstro(PosicaoMonstro.NAO_INVOCADO);
+			((Monstro) carta).setTurnoInvocacao(-1);
 		}
 		else if( carta instanceof Magia ) {
-			this.campo.setEspacoMagia(null, posicaoCamp);
+			this.campo.setEspacoMagia(null, carta.getLocalizacao());
 		}
+		carta.setLocalizacao(-1);
 	}
 	
+	// TODO corrigir as funções abaixo desse todo.
 	/**
 	 * Coloca no tabuleiro um mostro localizado em um determinada posição da mão.
 	 * @param monstro a posição determinada.

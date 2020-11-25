@@ -13,7 +13,7 @@ public abstract class Carta {
 	private String nome;
 	private String descricao;
 	private CartaLayaout layaout;
-	private int localizacaoTabuleiro;
+	private int localizacao;
 	
 	/**
 	 * Construtor padrão da classe Carta.
@@ -25,7 +25,7 @@ public abstract class Carta {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.layaout = layaout;
-		this.localizacaoTabuleiro = -1;
+		this.localizacao = -1;
 	}
 	
 	public String getNome() {
@@ -52,11 +52,11 @@ public abstract class Carta {
 		this.layaout = layaout;
 	}
 
-	public int getLocalizacaoTabuleiro() {
-		return localizacaoTabuleiro;
+	public int getLocalizacao() {
+		return localizacao;
 	}
 
-	public void setLocalizacaoTabuleiro(int localizacaoTabuleiro) {
-		this.localizacaoTabuleiro = localizacaoTabuleiro;
+	public void setLocalizacao(int localizacaoTabuleiro) {
+		this.localizacao = localizacaoTabuleiro;
 	}
 }

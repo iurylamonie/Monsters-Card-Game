@@ -1,6 +1,7 @@
 package br.imd.Models.Interfaces;
 
 import br.imd.Models.Jogador;
+import br.imd.Models.Monstro;
 
 /**
  * Interface que contém efeitos comuns entre as magias de equipamento.
@@ -12,16 +13,14 @@ public interface iEfeitosEquipamento extends iEfeitos {
 	/**
 	 * Aumenta o ATK do monstro de um jogador de acordo 
 	 * com pontos informado no atributo "pontos" da carta magia-equipamento.
-	 * @param jogador o jogador dono da carta que vai receber o bonus de ATK.
-	 * @param posicaoCartaTab posicao da carta no tabuleiro.
+	 * @param monstroAlvo monstro que vai ser alvo do efeito
 	 */
-	void aumentarATK(Jogador jogador, int posicaoCartaTab);
+	void aumentarATK( Monstro monstroAlvo );
 	
 	/**
 	 * Aumenta a DEF do monstro de um jogador de acordo 
 	 * com pontos informado no atributo "pontos" da carta magia-equipamento.
-	 * @param jogador o jogador dono da carta que vai receber o bonus de ATK.
-	 * @param posicaoCartaTab posicao da carta no tabuleiro.
+	 * @param monstroAlvo monstro que vai ser alvo do efeito.
 	 */
-	void aumentarDEF(Jogador jogador, int posicaoCartaTab);
+	void aumentarDEF( Monstro monstroAlvo );
 }
