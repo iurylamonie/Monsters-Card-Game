@@ -1,7 +1,5 @@
 package br.imd.Models;
 
-import br.imd.Models.Monstro;
-import br.imd.Models.Magia;
 /**
  * Representa o campo do jogador em um tabuleiro.
  * @author Iury
@@ -23,6 +21,31 @@ public class Campo {
 		this.zonaEfeitosMonstros = new boolean[3];
 	}
 	
+	/**
+	 * Retorna um inteiro para a primeira espaço vazio na zona de Monstros.
+	 * Retorna -1 caso não tenha ESPAÇO.
+	 * @return inteiro
+	 */
+	public int espacoZonaMonstroVazio() {
+		if( this.zonaMonstros[0] == null ) return 0;
+		else if( this.zonaMonstros[1] == null ) return 1;
+		else if( this.zonaMonstros[2] == null ) return 2;
+		
+		return -1;
+	}
+	
+	/**
+	 * Retorna um inteiro para a primeira espaço vazio na zona de magias.
+	 * Retorna -1 caso não tenha ESPAÇO.
+	 * @return inteiro
+	 */
+	public int espacoZonaMagiaVazio() {
+		if( this.zonaMonstros[0] == null ) return 0;
+		else if( this.zonaMonstros[1] == null ) return 1;
+		else if( this.zonaMonstros[2] == null ) return 2;
+		
+		return -1;
+	}
 	
 	/**
 	 * Retorna uma carta monstro localizada em uma determinada posição na zona de monstros.
@@ -35,12 +58,14 @@ public class Campo {
 	
 	
 	/**
-	 * Adiciona uma carta monstro em uma localização determinada na zona de monstros.
+	 * Adiciona uma carta monstro em uma localização determinada na zona de monstros e
+	 * seta a posição na zona de efeitos de monstros como true.
 	 * @param monstro carta monstro a ser adicionada na zona de monstros
 	 * @param posicao localização que a carta deve ser adicionada.
 	 */
 	public void setEspacoMonstro( Monstro monstro, int posicao) {
 		this.zonaMonstros[posicao] = monstro;
+		this.zonaEfeitosMonstros[posicao] = true;
 	}
 	
 	/**
@@ -85,5 +110,23 @@ public class Campo {
 
 	public void setZonaEfeitosMonstros(boolean zonaEfeitosMonstros[]) {
 		this.zonaEfeitosMonstros = zonaEfeitosMonstros;
+	}
+	
+	/**
+	 * Retorna o valor de posição na zona de efeitos é true ou false;
+	 * @param posicao posição de deseja ver o valor.
+	 * @return boolean
+	 */
+	public boolean isZonaEfeitoMonstro(int posicao) {
+		return this.zonaEfeitosMonstros[posicao];
+	}
+	
+	/**
+	 * Muda o valor da posição na zona de efeitos, true ou false;
+	 * @param posicao posição na zona de efeitos.
+	 * @param valor boolean.
+	 */
+	public void setZonaEspacoEfeitosMonstros(int posicao, boolean valor) {
+		this.zonaEfeitosMonstros[posicao] = valor;
 	}
 }
