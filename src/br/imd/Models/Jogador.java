@@ -8,7 +8,7 @@ public class Jogador {
 	Jogador(String nome, Baralho baralho){
 		this.pontosVida = 0;
 		this.nome = nome;
-		tabuleiro = new Tabuleiro(baralho);
+		setTabuleiro(new Tabuleiro(baralho));
 	}
 	
 	public int getPontosVida() {
@@ -37,5 +37,13 @@ public class Jogador {
 	
 	public void mudarPosicaoBatalha(Monstro carta) {
 		
+	}
+
+	public Tabuleiro getTabuleiro() {
+		return tabuleiro;
+	}
+
+	public void setTabuleiro(Tabuleiro tabuleiro) {
+		this.tabuleiro = tabuleiro;
 	}
 }

@@ -1,7 +1,6 @@
 package br.imd.Models;
 
 import java.util.Stack;
-import java.util.Vector;
 
 public class Baralho {
 	private String nome;

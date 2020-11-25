@@ -5,7 +5,6 @@ import br.imd.Constants.CartaLayaout;
 import br.imd.Constants.PosicaoMonstro;
 import br.imd.Constants.TipoClasse;
 import br.imd.Constants.TipoEfeitoMonstro;
-import br.imd.Models.Monstro;
 
 /**
  * Classe que representa as Cartas de Monstro que possuem efeito.
@@ -83,6 +82,9 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 		
 		case AUMENTAR_PROPRIO_ATK:
 			this.setAtk( this.getAtk() - this.pontos );
+			break;
+		default:
+			//TODO o que fazer com as outras situações? Como o de diminuir algo do inimigo.
 			break;
 		}
 		

@@ -3,7 +3,6 @@ package br.imd.Models;
 import br.imd.Constants.CartaLayaout;
 import br.imd.Constants.TipoClasse;
 import br.imd.Constants.PosicaoMonstro;
-import br.imd.Models.Carta;
 
 /**
  * Classe responsavel por representar detalhes comuns das Cartas Monstro.
