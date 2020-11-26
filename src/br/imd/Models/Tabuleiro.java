@@ -8,7 +8,7 @@ import java.util.Vector;
  */
 public class Tabuleiro {
 	
-	private int pontosVida;
+	
 	private Vector<Carta> cemiterio;
 	private Vector<Carta> maoJogador;
 	private Baralho baralho;
@@ -23,7 +23,6 @@ public class Tabuleiro {
 		this.maoJogador = new Vector<Carta>();
 		this.baralho = baralho;
 		this.campo = new Campo();
-		this.pontosVida = 0;
 	}
 	
 	
@@ -72,21 +71,7 @@ public class Tabuleiro {
 		Carta carta = this.cemiterio.remove(posicao);
 		return carta;
 	}
-
-
-
-	public int getPontosVida() {
-		return pontosVida;
-	}
-
-
-
-	public void setPontosVida(int pontosVida) {
-		this.pontosVida = pontosVida;
-	}
-
-
-
+	
 	public Vector<Carta> getCemiterio() {
 		return cemiterio;
 	}

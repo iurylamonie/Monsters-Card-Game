@@ -9,7 +9,7 @@ public class Baralho {
 	public Baralho() {
 		cartas = new Stack<Carta>();
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -18,17 +18,12 @@ public class Baralho {
 		this.nome = nome;
 	}
 
-	
-	public void setCartas(Carta carta) {
-		cartas.add(carta);
-	}
-	
-	public Stack<Carta> getCartas(){
+	public Stack<Carta> getCartas() {
 		return cartas;
 	}
-	
-	//método extra adicionado por mim
-	public int getQuantidadeCartas() {
-		return cartas.size();
+
+	public void setCartas(Stack<Carta> cartas) {
+		this.cartas = cartas;
 	}
+	
 }

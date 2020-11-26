@@ -73,7 +73,7 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 			this.setAtk( this.getAtk() - this.pontos );
 			break;
 		default:
-			//TODO o que fazer com as outras situações? Como o de diminuir algo do inimigo.
+			//TODO  o que fazer com as outras situações? Como o de diminuir algo do inimigo.
 			break;
 		}
 		

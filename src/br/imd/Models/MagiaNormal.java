@@ -35,18 +35,18 @@ public class MagiaNormal extends Magia implements iEfeitosMagias {
 
 	@Override
 	public void desativarEfeito() {
-		// TODO n�o � necessario desativar efeitos de ganhar ou perder pv.
+		// TODO os efeitos de ganhar e perder pontos de vidas não são desativaveis.
 
 	}
 
 	@Override
 	public void ganharPV(Jogador jogador) {
-		// TODO precisa setar os atributos no tabuleiro primeiro valores no tabuleiro
+		jogador.setPontosVida(  jogador.getPontosVida() + this.getPontos());
 	}
 
 	@Override
 	public void perderPV(Jogador jogador) {
-		// TODO precisa settar os atributos de vida no tabuleiro.
+		jogador.setPontosVida(  jogador.getPontosVida() - this.getPontos());
 	}
 	
 	public TipoMagiaNormal getTipo() {

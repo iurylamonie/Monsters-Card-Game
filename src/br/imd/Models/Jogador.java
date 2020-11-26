@@ -7,6 +7,7 @@ package br.imd.Models;
  */
 public class Jogador {
 	
+	private int pontosVida;
 	private String nome;
 	private Tabuleiro tabuleiro;
 	
@@ -29,6 +30,14 @@ public class Jogador {
 
 	public void setTabuleiro(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
+	}
+
+	public int getPontosVida() {
+		return pontosVida;
+	}
+
+	public void setPontosVida(int pontosVida) {
+		this.pontosVida = pontosVida;
 	}
 	
 	
