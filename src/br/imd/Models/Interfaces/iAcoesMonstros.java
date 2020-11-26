@@ -1,9 +1,11 @@
 package br.imd.Models.Interfaces;
 
 import br.imd.Models.Jogador;
+import br.imd.Models.Monstro;
+import br.imd.Constants.PosicaoMonstro;
 
 /**
- * Interface que contém todas as ações(funções) que podem ser realizadas 
+ * Interface que contÃ©m todas as aÃ§Ãµes/funÃ§Ãµes que podem ser realizadas 
  * em um duelo com uma carta monstro.
  * @author Iury
  *
@@ -11,34 +13,31 @@ import br.imd.Models.Jogador;
 public interface iAcoesMonstros {
 	
 	/**
-	 * Função utilizada para invocar um carta monstro da mão do jogador no 
+	 * FunÃ§Ã£o utilizada para invocar um carta monstro da mÃ£o jogador atual no 
 	 * tabuleiro.
-	 * @param jogador o jogador dono da carta.
-	 * @param posicaoCartaMao posicao da carta monstro na mão do jogador.
+	 * @param monstro o monstro que vai ser invocado.
+	 * @param posicao posiÃ§Ã£o de batalha do monstro.
+	 * @return posiÃ§Ã£o na qual o monstro foi inserido na zona de monstros.
 	 */
-	void invocarMonstro(Jogador jogador, int posicaoCartaMao);
+	int invocarMonstro(Monstro monstro,  PosicaoMonstro posicaoMonstro);
 	
 	/**
-	 * Função utilizada para realizar o ataque de um monstro do jogador
-	 * contro um monstro do jogador inimigo.
-	 * @param jAtacante Jogador que está atacando.
-	 * @param mAtacante Posicao no tabuleiro do monstro do jogador atacante.
-	 * @param jAtacado Jogador inimigo que está sendo atacado.
-	 * @param mAtacado Posicao no tabuleiro do monstro do jogador inimigo.
+	 * FunÃ§Ã£oo utilizada para realizar o ataque de um monstro do jogador atual
+	 * contro um monstro do proximo jogador.
+	 * @param monstroAtacante monstro que vai realizar o ataque.
+	 * @param monstroAtacado monstro que vai receber o ataque.
 	 */
-	void atacar(Jogador jAtacante, int mAtacante, Jogador jAtacado, int mAtacado);
+	void atacar(Monstro monstroAtacante, Monstro monstroAtacado);
 	
 	/**
-	 * Função utilizada para realizar um ataque de um monstro do jogador
-	 * contr os Pontos de Vida do jogador.
-	 * @param jAtacante Jogador que está atacando.
-	 * @param mAtacante Posicao no tabuleiro do monstro do jogador atacante.
-	 * @param jogador Jogador inimigo que está sendo atacado.
+	 * FunÃ§Ã£o utilizada para realizar um ataque de um monstro do jogador atual
+	 * contra os Pontos de Vida do proximo jogador.
+	 * @param monstroAtacante Posicao no tabuleiro do monstro do jogador atacante.
 	 */
-	void atacarDireto(Jogador jAtacante, int mAtacante, Jogador jogador);
+	void atacarDireto(Monstro monstroAtacante);
 	
 	/**
-	 * Função utilizada para mudar a posição de batalha de um monstro do jogador
+	 * Funï¿½ï¿½o utilizada para mudar a posiï¿½ï¿½o de batalha de um monstro do jogador
 	 * no tabuleiro.
 	 * @param jogador jogador dono do monstro.
 	 * @param posicaoCartaTab posicao da carta no tabuleiro.

@@ -17,32 +17,21 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 	private TipoEfeitoMonstro tipoEfeito;
 	private int pontos;
 
-	/**
-	 * Construtor padrão da classe MonstroEfeito.
-	 * @param nome
-	 * @param descricao
-	 * @param layaout
-	 * @param nivel
-	 * @param atk
-	 * @param def
-	 * @param classe
-	 * @param posicaoBatalhao
-	 */
 	public MonstroEfeito(String nome, String descricao, CartaLayaout layaout, int nivel, int atk, int def,
 			TipoClasse classe, PosicaoMonstro posicaoBatalhao, boolean efeitoPassivo, TipoEfeitoMonstro tipoEfeito,
 			int pontos) {
-		super(nome, descricao, layaout, nivel, atk, def, classe, posicaoBatalhao);
+		super(nome, descricao, layaout, nivel, atk, def, classe);
 		this.efeitoPassivo = efeitoPassivo;
 		this.tipoEfeito = tipoEfeito;
 		this.pontos = pontos;
 	}
 	
 	/**
-	 * Ativa o efeito do monstro de acordo com o tipo de efeito do monstro.
-	 * @param jogadorAtivou jogador que é dono da carta monstro que o ativou.
-	 * @param posicaoCartaAtivou posicao da carta que o efeito foi ativado.
+	 * Ativa o efeito de uma carta monstro de acordo com o tipo de efeito do monstro.
+	 * @param jogadorAtivou jogador que Ã© dono da carta monstro que o ativou.
+	 * @param cartaAtividada carta que teve o efeito ativado
 	 * @param jogadorAlvo possivel jogador alvo do efeito da carta monstro.
-	 * @param posicaoCartaAlvo possivel posicao da carta que foi alvo do efeito da carta monstro.
+	 * @param cartaAlvo possivel carta que foi alvo do efeito da carta monstro.
 	 */
 	@Override
 	public void ativarEfeito(Jogador jogadorAtivou, Carta cartaAtivada, Jogador  jogadorAlvo, Carta cartaAlvo) {
@@ -84,7 +73,7 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 			this.setAtk( this.getAtk() - this.pontos );
 			break;
 		default:
-			//TODO o que fazer com as outras situações? Como o de diminuir algo do inimigo.
+			//TODO o que fazer com as outras situaÃ§Ãµes? Como o de diminuir algo do inimigo.
 			break;
 		}
 		
@@ -126,7 +115,7 @@ public class MonstroEfeito extends Monstro implements iEfeitosMonstros {
 	 */
 	@Override
 	public void diminuirDEFInimigo( Monstro monstroAlvo) {
-		// TODO é necessario ter as classes tabuleiro e jogador implementadas.
+		monstroAlvo.setDef( monstroAlvo.getDef() - this.getPontos() );
 		
 	}
 

@@ -15,6 +15,30 @@ public class Monstro extends Carta {
 	private int atk;
 	private int def;
 	private int turnoInvocacao;
+	private TipoClasse classe;
+	private PosicaoMonstro posicaoMonstro;
+	
+	/**
+	 * Construtor padrÃ£o classe monstro. A atributo turnoInvocacao ï¿½ iniciado com -1.
+	 * @param nome Nome da carta.
+	 * @param descricao Descriï¿½ï¿½o da carta. Em cartas com efeito deve se informado o que a carta faz e condiï¿½ï¿½es de execuï¿½ï¿½o.
+	 * @param layaout Layaout da carta.
+	 * @param nivel Nivel do monstro.
+	 * @param atk Ataque do monstro.
+	 * @param def Defesa do monstro.
+	 * @param classe Classe da carta monstro.
+	 */
+	public Monstro(String nome, String descricao, CartaLayaout layaout,
+			       int nivel, int atk, int def,
+			       TipoClasse classe) {
+		super(nome, descricao, layaout);
+		this.atk = atk;
+		this.def = def;
+		this.turnoInvocacao = -1;
+		this.classe = classe;
+		this.posicaoMonstro = PosicaoMonstro.NAO_INVOCADO;
+	}
+	
 	
 	public int getNivel() {
 		return nivel;
@@ -62,31 +86,6 @@ public class Monstro extends Carta {
 
 	public void setPosicaoMonstro(PosicaoMonstro posicaoMonstro) {
 		this.posicaoMonstro = posicaoMonstro;
-	}
-
-	private TipoClasse classe;
-	private PosicaoMonstro posicaoMonstro;
-	
-	/**
-	 * Construtor padrão da classe monstor. A atributo turnoInvocacao é iniciado com -1.
-	 * @param nome Nome da carta.
-	 * @param descricao Descrição da carta. Em cartas com efeito deve se informado o que a carta faz e condições de execução.
-	 * @param layaout Layaout da carta.
-	 * @param nivel Nivel do monstro.
-	 * @param atk Ataque do monstro.
-	 * @param def Defesa do monstro.
-	 * @param classe Classe da carta monstro.
-	 * @param posicaoBatalhao Posição de batalha que o monstro está.
-	 */
-	public Monstro(String nome, String descricao, CartaLayaout layaout,
-			       int nivel, int atk, int def,
-			       TipoClasse classe, PosicaoMonstro posicaoBatalhao) {
-		super(nome, descricao, layaout);
-		this.atk = atk;
-		this.def = def;
-		this.turnoInvocacao = -1;
-		this.classe = classe;
-		this.posicaoMonstro = posicaoBatalhao;
 	}
 
 }

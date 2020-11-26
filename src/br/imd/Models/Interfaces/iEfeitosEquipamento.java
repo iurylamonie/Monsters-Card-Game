@@ -1,10 +1,9 @@
 package br.imd.Models.Interfaces;
 
-import br.imd.Models.Jogador;
 import br.imd.Models.Monstro;
 
 /**
- * Interface que contém efeitos comuns entre as magias de equipamento.
+ * Interface que contï¿½m efeitos comuns entre as magias de equipamento.
  * @author Iury
  *
  */

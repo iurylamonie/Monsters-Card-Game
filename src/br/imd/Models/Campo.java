@@ -13,20 +13,23 @@ public class Campo {
 	
 	
 	/**
-	 * Inicializa os espaços de zonas do campo. Com tamanho 3 para cada zona.
+	 * Inicializa os espaï¿½os de zonas do campo. Com tamanho 3 para cada zona.
 	 */
 	public Campo() {
 		this.zonaMagia = new Magia[3];
 		this.zonaMonstros = new Monstro[3];
 		this.zonaEfeitosMonstros = new boolean[3];
+		for(int i = 0; i < 3; i++ ) {
+			this.zonaEfeitosMonstros[i] = false;
+		}
 	}
 	
 	/**
-	 * Retorna um inteiro para a primeira espaço vazio na zona de Monstros.
-	 * Retorna -1 caso não tenha ESPAÇO.
-	 * @return inteiro
+	 * Retorna um inteiro para o primeira espaÃ§o livre na zona de Monstros.
+	 * Retorna -1 caso tenha um espaÃ§o livre.
+	 * @return int para a posiÃ§Ã£o livre.
 	 */
-	public int espacoZonaMonstroVazio() {
+	public int espacoLivreZonaMonstro() {
 		if( this.zonaMonstros[0] == null ) return 0;
 		else if( this.zonaMonstros[1] == null ) return 1;
 		else if( this.zonaMonstros[2] == null ) return 2;
@@ -35,11 +38,11 @@ public class Campo {
 	}
 	
 	/**
-	 * Retorna um inteiro para a primeira espaço vazio na zona de magias.
-	 * Retorna -1 caso não tenha ESPAÇO.
+	 * Retorna um inteiro para o primeira espaÃ§o livre na zona de magias.
+	 * Retorna -1 caso tenha uma espaÃ§o livre.
 	 * @return inteiro
 	 */
-	public int espacoZonaMagiaVazio() {
+	public int espacoLivreZonaMagia() {
 		if( this.zonaMonstros[0] == null ) return 0;
 		else if( this.zonaMonstros[1] == null ) return 1;
 		else if( this.zonaMonstros[2] == null ) return 2;
@@ -48,46 +51,83 @@ public class Campo {
 	}
 	
 	/**
-	 * Retorna uma carta monstro localizada em uma determinada posição na zona de monstros.
-	 * @param posicao posição determinada da zona de monstros.
-	 * @return carta do monstro localizada na posição.
+	 * Adiciona uma carta monstro em uma localizaÃ§Ã£o determinada na zona de monstros.
+	 * @param monstro carta monstro a ser adicionada na zona de monstros
+	 * @param posicao localizaÃ§Ã£o que a carta deve ser adicionada.
 	 */
-	public Monstro getEspacoMonstro( int posicao ) {
+	public void inserirCartaMonstro( Monstro monstro, int posicao) {
+		this.zonaMonstros[posicao] = monstro;
+	}
+	
+	/**
+	 * Adiciona uma carta de magia em uma localizaÃ§Ã£o determinada na zona de magias.
+	 * @param magia carta de magia a ser adicionada na zona de magias
+	 * @param posicao localizaÃ§Ã£o que a carta deve ser adicionada.
+	 */
+	public void inserirCartaMagia( Magia magia, int posicao) {
+		this.zonaMagia[posicao] = magia;
+	}
+	
+	/**
+	 * Retira a carta monstro de um determinado espaÃ§o na zona de monstros e
+	 * e deixa o espaÃ§o livre.
+	 * @param posicao posiÃ§Ã£o do monstro que desejamos remover
+	 * @return monstro
+	 */
+	public Monstro removerCartaMonstro( int posicao ) {
+		Monstro monstro = this.getCartaMonstro(posicao);
+		
+		this.inserirCartaMonstro(null, posicao);
+		
+		return monstro;
+	}
+	
+	public Magia removerCartaMAgia( int posicao ) {
+		Magia magia = this.getCartaMagia(posicao);
+		
+		this.inserirCartaMagia(null, posicao);
+		
+		return magia;
+	}
+	
+	/**
+	 * Retorna uma carta monstro localizada em uma determinada posiï¿½ï¿½o na zona de monstros.
+	 * @param posicao posiï¿½ï¿½o determinada da zona de monstros.
+	 * @return carta do monstro localizada na posiï¿½ï¿½o.
+	 */
+	public Monstro getCartaMonstro( int posicao ) {
 		return this.zonaMonstros[posicao];
 	}
 	
-	
 	/**
-	 * Adiciona uma carta monstro em uma localização determinada na zona de monstros e
-	 * seta a posição na zona de efeitos de monstros como true.
-	 * @param monstro carta monstro a ser adicionada na zona de monstros
-	 * @param posicao localização que a carta deve ser adicionada.
+	 * Retorna uma carta de magia localizada em uma determinada posiï¿½ï¿½o na zona de magias.
+	 * @param posicao posiï¿½ï¿½o determinada da zona de magia.
+	 * @return carta de magia localizada na posiï¿½ï¿½o.
 	 */
-	public void setEspacoMonstro( Monstro monstro, int posicao) {
-		this.zonaMonstros[posicao] = monstro;
-		this.zonaEfeitosMonstros[posicao] = true;
-	}
-	
-	/**
-	 * Retorna uma carta de magia localizada em uma determinada posição na zona de magias.
-	 * @param posicao posição determinada da zona de magia.
-	 * @return carta de magia localizada na posição.
-	 */
-	public Magia getEspacoMagia( int posicao ) {
+	public Magia getCartaMagia( int posicao ) {
 		return this.zonaMagia[posicao];
 	}
 	
 	
+	
+	
 	/**
-	 * Adiciona uma carta de magia em uma localização determinada na zona de magias.
-	 * @param magia carta de magia a ser adicionada na zona de magias
-	 * @param posicao localização que a carta deve ser adicionada.
+	 * Retorna o valor de posiï¿½ï¿½o na zona de efeitos ï¿½ true ou false;
+	 * @param posicao posiï¿½ï¿½o de deseja ver o valor.
+	 * @return boolean
 	 */
-	public void setEspacoMagia( Magia magia, int posicao) {
-		this.zonaMagia[posicao] = magia;
+	public boolean checarAtivacaoEfeito(int posicao) {
+		return this.zonaEfeitosMonstros[posicao];
 	}
 	
-	
+	/**
+	 * Muda o valor da posiï¿½ï¿½o na zona de efeitos, true ou false;
+	 * @param posicao posiï¿½ï¿½o na zona de efeitos.
+	 * @param valor boolean.
+	 */
+	public void mudarAtivacaoEfeito(int posicao, boolean valor) {
+		this.zonaEfeitosMonstros[posicao] = valor;
+	}
 	
 	public Monstro[] getZonaMonstros() {
 		return zonaMonstros;
@@ -112,21 +152,4 @@ public class Campo {
 		this.zonaEfeitosMonstros = zonaEfeitosMonstros;
 	}
 	
-	/**
-	 * Retorna o valor de posição na zona de efeitos é true ou false;
-	 * @param posicao posição de deseja ver o valor.
-	 * @return boolean
-	 */
-	public boolean isZonaEfeitoMonstro(int posicao) {
-		return this.zonaEfeitosMonstros[posicao];
-	}
-	
-	/**
-	 * Muda o valor da posição na zona de efeitos, true ou false;
-	 * @param posicao posição na zona de efeitos.
-	 * @param valor boolean.
-	 */
-	public void setZonaEspacoEfeitosMonstros(int posicao, boolean valor) {
-		this.zonaEfeitosMonstros[posicao] = valor;
-	}
 }

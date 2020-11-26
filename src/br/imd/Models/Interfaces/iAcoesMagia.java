@@ -1,25 +1,26 @@
 package br.imd.Models.Interfaces;
 
 import br.imd.Models.Jogador;
+import br.imd.Models.Magia;
 
 /**
- * Interface que contém todas as ações(funções) que podem ser realizadas 
+ * Interface que contï¿½m todas as aï¿½ï¿½es(funï¿½ï¿½es) que podem ser realizadas 
  * em um duelo com uma carta magica.
  * @author Iury
  *
  */
 public interface iAcoesMagia {
 	
-	/**
-	 * Função utilizada para invocar uma carta magica da mão
-	 * do jogador no tabuleiro.
-	 * @param jogador o jogador que vai invocar a carta magica.
-	 * @param posicaoCartaMao a posição da carta magica na mão.
-	 */
-	void invocarMagia(Jogador jogador, int posicaoCartaMao);
 	
 	/**
-	 * Função utilizada internamenta para ativar efeito de uma carta magica.
+	 * Coloca uma magia da mÃ£o do jogador no tabuleiro.
+	 * @param magia magia que vai ser colocada no tabuleiro.
+	 * @return posiÃ§Ã£o que a carta foi colocada no campo de magia.
+	 */
+	int invocarMagia(Magia magia);
+	
+	/**
+	 * Funï¿½ï¿½o utilizada internamenta para ativar efeito de uma carta magica.
 	 * @param jogador o jogador dono da carta.
 	 * @param posicaoCartaTab posicao da carta magica no tabuleiro.
 	 */

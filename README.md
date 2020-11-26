@@ -9,8 +9,10 @@
 2. Na classe `Monstro`: Modificar o construtor pra setar posicaoBatalha como NAO_invocado
 3. 
 
+## TODO Duelo
 ## Requisitos:
 
+ 
 JavaFX 15.0.1
 e(fx)clipse 3.6.0
 JavaSE 14

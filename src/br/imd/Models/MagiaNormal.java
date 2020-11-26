@@ -6,7 +6,7 @@ import br.imd.Models.Interfaces.iEfeitosMagias;
 
 /**
  * Classe que representa as magias normais de jogo, ou seja magias que o
- * efeito é utilizado e logo em seguida essa carta magica vai para o cemiterio.
+ * efeito ï¿½ utilizado e logo em seguida essa carta magica vai para o cemiterio.
  * @author Iury
  *
  */
@@ -35,18 +35,18 @@ public class MagiaNormal extends Magia implements iEfeitosMagias {
 
 	@Override
 	public void desativarEfeito() {
-		// TODO não é necessario desativar efeitos de ganhar ou perder pv.
+		// TODO nï¿½o ï¿½ necessario desativar efeitos de ganhar ou perder pv.
 
 	}
 
 	@Override
 	public void ganharPV(Jogador jogador) {
-		jogador.setPontosVida( jogador.getPontosVida() + this.getPontos() );
+		// TODO precisa setar os atributos no tabuleiro primeiro valores no tabuleiro
 	}
 
 	@Override
 	public void perderPV(Jogador jogador) {
-		jogador.setPontosVida( jogador.getPontosVida() - this.getPontos() );
+		// TODO precisa settar os atributos de vida no tabuleiro.
 	}
 	
 	public TipoMagiaNormal getTipo() {
