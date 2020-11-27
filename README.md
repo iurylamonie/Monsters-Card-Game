@@ -26,7 +26,7 @@ Invocar
 5. SummonedTributeException: Quando o jogador invoca um monstro com mais de 4 estrelas.
 6. NoSpaceZoneException: Quanto o jogador tentar invocar uma carta mas não tem espaço na zona de monstros.
 7. AlreadySummonedMonsterException: Quando o jogador tentar invocar um monstro no mesmo turno que já invocou outro.
-
+8. NotChangeBattlePositionException: O monstro não pode mudar de posição de batalha durante a Fase de Batalha o no turno que é invocado.
 ## Requisitos:
 
  

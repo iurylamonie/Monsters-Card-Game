@@ -6,7 +6,12 @@ import br.imd.Models.Monstro;
 import br.imd.Rules.AlreadySummonedMonsterException;
 import br.imd.Rules.EffectHasActivatedException;
 import br.imd.Rules.NoSpaceZoneException;
+import br.imd.Rules.NotChangeBattlePositionException;
 import br.imd.Rules.SummonedTributeException;
+import br.imd.Rules.WinnerException;
+
+import java.util.Vector;
+
 import br.imd.Constants.PosicaoMonstro;
 
 /**
@@ -22,9 +27,18 @@ public interface iAcoesMonstros {
 	 * tabuleiro.
 	 * @param monstro o monstro que vai ser invocado.
 	 * @param posicao posição de batalha do monstro.
-	 * @return posição na qual o monstro foi inserido na zona de monstros.
+	 * @return posição na qual o monstro foi inserido na zona de monstros..
 	 */
 	int invocarMonstro(Monstro monstro,  PosicaoMonstro posicaoMonstro) throws SummonedTributeException, NoSpaceZoneException, AlreadySummonedMonsterException;
+	
+	
+	/**
+	 * Invoca uma carta monstro da mão do jogador e tributa monstros que estão no campo.
+	 * @param monstro
+	 * @param tributos
+	 * @return
+	 */
+	int invocarMonstroTributo(Monstro monstro, Vector<Monstro> tributos);
 	
 	/**
 	 * Funçãoo utilizada para realizar o ataque de um monstro do jogador atual
@@ -32,22 +46,20 @@ public interface iAcoesMonstros {
 	 * @param monstroAtacante monstro que vai realizar o ataque.
 	 * @param monstroAtacado monstro que vai receber o ataque.
 	 */
-	void atacar(Monstro monstroAtacante, Monstro monstroAtacado);
+	void atacar(Monstro monstroAtacante, Monstro monstroAtacado) throws WinnerException;
 	
 	/**
 	 * Função utilizada para realizar um ataque de um monstro do jogador atual
 	 * contra os Pontos de Vida do proximo jogador.
 	 * @param monstroAtacante Posicao no tabuleiro do monstro do jogador atacante.
 	 */
-	void atacarDireto(Monstro monstroAtacante);
+	void atacarDireto(Monstro monstroAtacante) throws WinnerException;
 	
 	/**
-	 * Fun��o utilizada para mudar a posi��o de batalha de um monstro do jogador
-	 * no tabuleiro.
-	 * @param jogador jogador dono do monstro.
-	 * @param posicaoCartaTab posicao da carta no tabuleiro.
+	 * Muda a posição de batalha de um monstro que está localizado no tabuleiro.
+	 * @param monstro o monstro que deseja mudar a posição de batalha.
 	 */
-	void mudarPosicaoBatalha(Jogador jogador, int posicaoCartaTab);
+	void mudarPosicaoBatalha(Monstro monstro) throws NotChangeBattlePositionException; 
 	
 	/**
 	 * Ativa o efeito de uma carta de monstro efeito,

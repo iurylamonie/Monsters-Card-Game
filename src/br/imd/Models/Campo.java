@@ -1,5 +1,7 @@
 package br.imd.Models;
 
+import br.imd.Constants.PosicaoMonstro;
+
 /**
  * Representa o campo do jogador em um tabuleiro.
  * @author Iury
@@ -80,7 +82,7 @@ public class Campo {
 		Monstro monstro = this.getCartaMonstro(posicao);
 		monstro.setLocalizacao(-1);
 		this.inserirCartaMonstro(null, posicao);
-		
+		monstro.setPosicaoMonstro(PosicaoMonstro.NAO_INVOCADO);
 		return monstro;
 	}
 	
@@ -90,7 +92,7 @@ public class Campo {
 	 * @param posicao posição da magia de desejamos revmover
 	 * @return retorna o magia retirada da posição
 	 */
-	public Magia removerCartaMAgia( int posicao ) {
+	public Magia removerCartaMagia( int posicao ) {
 		Magia magia = this.getCartaMagia(posicao);
 		magia.setLocalizacao(-1);
 		this.inserirCartaMagia(null, posicao);
