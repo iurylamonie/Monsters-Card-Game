@@ -3,6 +3,7 @@ package br.imd.Views.Debug;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -47,7 +48,7 @@ public class Principal {
 			       TipoClasse.GUERREIRO) );
 		
 		baralho1.setCartas(cartas);
-		
+		Collections.shuffle(baralho1.getCartas());
 		Tabuleiro tab1 = new Tabuleiro(baralho1);
 		
 		tab1.comprar();
@@ -68,6 +69,9 @@ public class Principal {
 			} else if( carta instanceof MagiaNormal ) {
 				System.out.println(" Cartas de Magia Normal -- Nome: " + carta.getNome() 
 				+ " -- Efeito: " + ((MonstroEfeito) carta).getDescricao());
+			} else if( carta instanceof MagiaEquipamento) {
+				System.out.println(" Cartas de Magia Equipamento -- Nome: " + carta.getNome() 
+				+ " -- Efeito: " + ((MagiaEquipamento) carta).getDescricao());
 			}
 		}
 		

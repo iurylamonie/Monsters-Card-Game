@@ -57,6 +57,7 @@ public class Campo {
 	 */
 	public void inserirCartaMonstro( Monstro monstro, int posicao) {
 		this.zonaMonstros[posicao] = monstro;
+		monstro.setLocalizacao(posicao);
 	}
 	
 	/**
@@ -66,6 +67,7 @@ public class Campo {
 	 */
 	public void inserirCartaMagia( Magia magia, int posicao) {
 		this.zonaMagia[posicao] = magia;
+		magia.setLocalizacao(posicao);
 	}
 	
 	/**
@@ -76,15 +78,21 @@ public class Campo {
 	 */
 	public Monstro removerCartaMonstro( int posicao ) {
 		Monstro monstro = this.getCartaMonstro(posicao);
-		
+		monstro.setLocalizacao(-1);
 		this.inserirCartaMonstro(null, posicao);
 		
 		return monstro;
 	}
 	
+	/**
+	 * Retira a carta de magia de uma determinado espaço na zona de magia e
+	 * deixa o espaço livre.
+	 * @param posicao posição da magia de desejamos revmover
+	 * @return retorna o magia retirada da posição
+	 */
 	public Magia removerCartaMAgia( int posicao ) {
 		Magia magia = this.getCartaMagia(posicao);
-		
+		magia.setLocalizacao(-1);
 		this.inserirCartaMagia(null, posicao);
 		
 		return magia;

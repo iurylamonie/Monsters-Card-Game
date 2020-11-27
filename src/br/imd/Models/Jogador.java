@@ -9,11 +9,11 @@ public class Jogador {
 	
 	private int pontosVida;
 	private String nome;
-	private Tabuleiro tabuleiro;
+	private Baralho baralho;
 	
 	Jogador(String nome, Baralho baralho){
 		this.nome = nome;
-		this.tabuleiro = new Tabuleiro(baralho);
+		this.setBaralho(baralho);
 	}
 
 	public String getNome() {
@@ -24,20 +24,20 @@ public class Jogador {
 		this.nome = nome;
 	}
 
-	public Tabuleiro getTabuleiro() {
-		return tabuleiro;
-	}
-
-	public void setTabuleiro(Tabuleiro tabuleiro) {
-		this.tabuleiro = tabuleiro;
-	}
-
 	public int getPontosVida() {
 		return pontosVida;
 	}
 
 	public void setPontosVida(int pontosVida) {
 		this.pontosVida = pontosVida;
+	}
+
+	public Baralho getBaralho() {
+		return baralho;
+	}
+
+	public void setBaralho(Baralho baralho) {
+		this.baralho = baralho;
 	}
 	
 	

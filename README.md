@@ -10,6 +10,8 @@
 3. 
 
 ## TODO Duelo
+1. Deve permitir fazer a preparação do duelo: Escolher o jogador que começa, Embaralhar os baralhos, iniciar as vidas dos jogadadores com 4k de vida e comprar 4 cartas.
+
 ## Requisitos:
 
  

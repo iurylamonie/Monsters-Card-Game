@@ -33,7 +33,7 @@ public class Tabuleiro {
 	public void comprar() {
 		
 		Carta carta = this.baralho.getCartas().pop();
-		this.maoJogador.add(carta);
+		this.inserirCartaMao(carta);
 	}
 	
 	/**
@@ -42,6 +42,7 @@ public class Tabuleiro {
 	 */
 	public void inserirCartaMao( Carta carta ) {
 		this.maoJogador.add(carta);
+		carta.setLocalizacao( this.maoJogador.size() - 1);
 	}
 	
 	/**
@@ -51,6 +52,7 @@ public class Tabuleiro {
 	 */
 	public Carta removerCartaMao(int posicao ) {
 		Carta carta = this.maoJogador.remove(posicao);
+		carta.setLocalizacao(-1);
 		return carta;
 	}
 	
