@@ -7,12 +7,17 @@ import java.util.Vector;
 
 import br.imd.Constants.Fase;
 import br.imd.Constants.PosicaoMonstro;
+import br.imd.Constants.TipoMagiaNormal;
 import br.imd.Models.Campo;
 import br.imd.Models.Carta;
 import br.imd.Models.Jogador;
+import br.imd.Models.Magia;
+import br.imd.Models.MagiaEquipamento;
+import br.imd.Models.MagiaNormal;
 import br.imd.Models.Monstro;
 import br.imd.Models.MonstroEfeito;
 import br.imd.Models.Tabuleiro;
+import br.imd.Models.Interfaces.iAcoesMagia;
 import br.imd.Models.Interfaces.iAcoesMonstros;
 import br.imd.Rules.AlreadySummonedMonsterException;
 import br.imd.Rules.EffectHasActivatedException;
@@ -29,7 +34,7 @@ import br.imd.Rules.WinnerException;
  * @author Iury
  *
  */
-public class Duelo implements iAcoesMonstros{
+public class Duelo implements iAcoesMonstros, iAcoesMagia{
 
 	private int turnoAtual;
 	private Fase faseAtual;
@@ -338,6 +343,10 @@ public class Duelo implements iAcoesMonstros{
 		
 	}
 
+	/* 
+	 * iAcoesMagia
+	 */
+	
 	@Override
 	public void ativarEfeitoMonstro(Jogador jogadorAtivou, Carta cartaAtivou, Jogador jogadorAlvo, Carta cartaAlvo)
 			throws EffectHasActivatedException {
@@ -353,6 +362,53 @@ public class Duelo implements iAcoesMonstros{
 		
 	}
 	
+	@Override
+	public int invocarMagia(Magia magia) throws NoSpaceZoneException {
+		Tabuleiro tab = this.dueladores.get(this.atualJogador);
+		int pos = tab.getCampo().espacoLivreZonaMagia();
+		if(  pos != -1 ) {
+			tab.getCampo().inserirCartaMagia(magia, pos);
+		} else throw new  NoSpaceZoneException("A magia " + magia.getNome() + " não pode ser invocado porque " + this.atualJogador.getNome() + " não tem espaço na zona de monstros.");
+		return pos;
+	}
+
+	@Override
+	public void ativarEfeitoMagia(Jogador jogadorAtivou, Carta cartaAtivou, Jogador jogadorAlvo, Carta cartaAlvo)
+			throws WinnerException {
+		if(cartaAtivou instanceof MagiaNormal ) {
+			((MagiaNormal) cartaAtivou).ativarEfeito(jogadorAtivou, cartaAtivou, jogadorAlvo, cartaAlvo);
+			if( ((MagiaNormal) cartaAtivou).getTipo() == TipoMagiaNormal.PERDER_VIDA ) {
+				if (jogadorAlvo.getPontosVida() <= 0) 
+					this.vencedor(jogadorAtivou, "VENCEDOR: " + jogadorAtivou.getNome() + "! Reduziu a vida do seu oponente a cinzas!");
+			}
+			
+			Tabuleiro tab = this.dueladores.get(jogadorAtivou);
+			cartaAtivou = tab.getCampo().removerCartaMagia(cartaAtivou.getLocalizacao());
+			tab.inserCartaCemiterio(cartaAtivou);
+		} else if(cartaAtivou instanceof MagiaEquipamento) {
+			((MagiaEquipamento) cartaAtivou).ativarEfeito(jogadorAtivou, cartaAtivou, jogadorAlvo, cartaAlvo);
+			((MagiaEquipamento) cartaAtivou).setEfeitoFoiAtivado(true);
+		}
+		
+	}
+	@Override
+	public void verificarMonstroEquipado( Jogador dono, Monstro monstro) {
+		
+		Tabuleiro tab = this.dueladores.get(dono);
+		
+		for(Magia magia : tab.getCampo().getZonaMagia()) {
+			if( magia != null && magia instanceof MagiaEquipamento ) {
+				
+				if(((MagiaEquipamento) magia).getMonstroEquipado() == monstro) {
+					((MagiaEquipamento) magia).desativarEfeito();
+					
+					magia = tab.getCampo().removerCartaMagia( magia.getLocalizacao() );
+					tab.inserCartaCemiterio(magia);
+				}
+				
+			}
+		}
+	}
 	
 	public int getTurnoAtual() {
 		return turnoAtual;
@@ -395,9 +451,4 @@ public class Duelo implements iAcoesMonstros{
 		this.dueladores = dueladores;
 	}
 
-	
-	
-	
-	
-	
 }

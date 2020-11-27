@@ -7,7 +7,7 @@ import br.imd.Models.Interfaces.iEfeitosEquipamento;
 
 /**
  * Classe que representa as cartas magicas de equipamentos. A carta se equipa ao monstro
- * dando bonus de atk ou def e só sai do campo quando o monstro na qual ela é equipada deixa
+ * dando bonus de atk ou def e sï¿½ sai do campo quando o monstro na qual ela ï¿½ equipada deixa
  * o campo.
  * @author Iury
  *
@@ -55,11 +55,13 @@ public class MagiaEquipamento extends Magia implements iEfeitosEquipamento {
 	@Override
 	public void aumentarATK( Monstro monstroAlvo ) {
 		monstroAlvo.setAtk( monstroAlvo.getAtk() + this.getPontos());
+		this.setMonstroEquipado(monstroAlvo);
 	}
 
 	@Override
 	public void aumentarDEF(Monstro monstroAlvo) {
 		monstroAlvo.setDef( monstroAlvo.getDef() + this.getPontos() );
+		this.setMonstroEquipado(monstroAlvo);
 	}
 	
 	public Monstro getMonstroEquipado() {
