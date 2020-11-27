@@ -11,7 +11,7 @@ public class Jogador {
 	private String nome;
 	private Baralho baralho;
 	
-	Jogador(String nome, Baralho baralho){
+	public Jogador(String nome, Baralho baralho){
 		this.nome = nome;
 		this.setBaralho(baralho);
 	}
