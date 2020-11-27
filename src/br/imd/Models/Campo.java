@@ -137,6 +137,18 @@ public class Campo {
 		this.zonaEfeitosMonstros[posicao] = valor;
 	}
 	
+	/**
+	 * Informa a quantidade de cartas monstros na zona de monstros.
+	 * @return quantidade de cartas monstro na zona de monstros.
+	 */
+	public int quantidadeCartaMonstro() {
+		int cont = 0;
+		for(int i = 0; i < 3; i++) {
+			if(this.zonaMonstros[i] != null ) cont++;
+		}
+		return cont;
+	}
+	
 	public Monstro[] getZonaMonstros() {
 		return zonaMonstros;
 	}
