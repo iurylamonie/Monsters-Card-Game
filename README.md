@@ -10,7 +10,22 @@
 3. 
 
 ## TODO Duelo
-1. Deve permitir fazer a preparação do duelo: Escolher o jogador que começa, Embaralhar os baralhos, iniciar as vidas dos jogadadores com 4k de vida e comprar 4 cartas.
+Invocar
+1. Já invocou um monstro nesse turno
+2. Não tem espaço no tabuleiro
+3. Invocação Tributo mas não tem monstros suficientes no tabuleiro
+4. invocação tributo.
+
+
+## Exceções
+
+1. HandFullException: Quando a mão do jogador estiver com 6 cartas ele não pode mais comprar.
+2. NoCardsDrawException: Quando o jogador vai comprar carta mas ele não tem mais cartas no baralho, ele perde o jogo.
+3. WinnerException: Quando o jogador inimigo chegar a zero da PV.
+4. EffectHasActivatedException: Quando um monstro tentar ativar seu efeito, mas o efeito já tinha sido ativado.
+5. SummonedTributeException: Quando o jogador invoca um monstro com mais de 4 estrelas.
+6. NoSpaceZoneException: Quanto o jogador tentar invocar uma carta mas não tem espaço na zona de monstros.
+7. AlreadySummonedMonsterException: Quando o jogador tentar invocar um monstro no mesmo turno que já invocou outro.
 
 ## Requisitos:
 

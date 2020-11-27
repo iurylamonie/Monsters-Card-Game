@@ -7,6 +7,9 @@ import java.util.Random;
 import br.imd.Constants.Fase;
 import br.imd.Models.Jogador;
 import br.imd.Models.Tabuleiro;
+import br.imd.Rules.HandFullException;
+import br.imd.Rules.NoCardDrawException;
+import br.imd.Rules.WinnerException;
 
 /**
  * Classe duelo é responsavel pelo geranciamente do duelo assim como na
@@ -30,7 +33,7 @@ public class Duelo {
 		this.dueladores.put(jogador2, new Tabuleiro( jogador2.getBaralho() ));
 		this.preparacao(jogador1, jogador2);
 		this.turnoAtual = 1;
-		this.faseAtual = Fase.COMPRA;
+		this.faseAtual = Fase.PRINCIPAL;
 		this.invocacaoMonstro = false;
 	}
 	
@@ -44,6 +47,69 @@ public class Duelo {
 	}
 	
 	/**
+	 * Passa para o proximo turno, muda o mandante do turno e
+	 * troca a fase atual para a Fase de Compra..
+	 */
+	public void passarTurno() throws NoCardDrawException, HandFullException  {
+		this.turnoAtual++;
+		
+		Jogador temp = this.atualJogador;
+		this.atualJogador = this.proxJogador;
+		this.proxJogador = temp;
+		
+		this.faseAtual = Fase.COMPRA;
+		this.proximaFase(this.faseAtual);
+	}
+	
+	/**
+	 * Passa para a proxima fase e retorna essa proxima fase.
+	 * @param faseAtual a fase que o jogador está atualmente.
+	 * @return a proxima fase
+	 */
+	public Fase proximaFase(Fase faseAtual) throws NoCardDrawException, HandFullException {
+		switch(faseAtual) {
+		case COMPRA:
+			this.comprarCarta(this.atualJogador);
+			this.faseAtual = Fase.PRINCIPAL;
+			break;
+		case PRINCIPAL:
+			this.faseAtual = Fase.BATALHA;
+			break;
+		case BATALHA:
+			this.passarTurno();	
+			break;
+		}
+		return this.faseAtual;
+	}
+	
+	/**
+	 * Compra uma carta da baralho e coloca na mão do jogador.
+	 * @param jogador jogador que vai comprar a carta.
+	 */
+	public void comprarCarta(Jogador jogador) throws NoCardDrawException, HandFullException {
+	
+		Tabuleiro tab = this.dueladores.get(jogador);
+		
+		if( tab.getBaralho().getCartas().size() != 0) {
+			
+			if( tab.getMaoJogador().size() != 6 ) {
+				
+				tab.comprar();
+				
+			} else throw new HandFullException("O jogador " + jogador.getNome() + " está com o limite de cartas na mão. Nesse turno não pode comprar." );
+			
+		} else throw new NoCardDrawException("O jogador " + jogador.getNome() + " não possue cartas no baralho para comprar.");
+	}
+	
+	/**
+	 * O jogador desiste do duelo e dá a vitoria para o oponente.
+	 * @param jogador jogador que desistiu do duelo;
+	 */
+	public void desistirDuelo(Jogador jogador) throws WinnerException {
+
+		this.vencedor(this.proxJogador, "O jogador " + jogador.getNome() + " desistiu do duelo!");
+	}
+	/**
 	 * Faz toda a preparação inicial do duelo.
 	 * @param jogador1 um dos jogadores que vai participar do duelo.
 	 * @param jogador2 outro jogador que vai participar do duelo
@@ -55,7 +121,6 @@ public class Duelo {
 		this.embaralhar(jogador2);
 		this.gerarVida();
 		this.compraInicial();
-		// FIXME implementar as funções necessarias primeiro. 
 	}
 	
 	/**
@@ -98,6 +163,14 @@ public class Duelo {
 			tab.comprar();
 		}
 		
+	}
+	
+	/**
+	 * Passa para o sistema qual jogador venceu o duelo.
+	 * @param vencedor o vencedor do duelo.
+	 */
+	private void vencedor( Jogador vencedor, String message ) throws WinnerException {
+		throw new WinnerException("O jogador " + vencedor.getNome() + " venceu o duelo! " + message);
 	}
 	
 	public int getTurnoAtual() {

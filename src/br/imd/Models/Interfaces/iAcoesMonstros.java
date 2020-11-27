@@ -1,7 +1,12 @@
 package br.imd.Models.Interfaces;
 
+import br.imd.Models.Carta;
 import br.imd.Models.Jogador;
 import br.imd.Models.Monstro;
+import br.imd.Rules.AlreadySummonedMonsterException;
+import br.imd.Rules.EffectHasActivatedException;
+import br.imd.Rules.NoSpaceZoneException;
+import br.imd.Rules.SummonedTributeException;
 import br.imd.Constants.PosicaoMonstro;
 
 /**
@@ -19,7 +24,7 @@ public interface iAcoesMonstros {
 	 * @param posicao posição de batalha do monstro.
 	 * @return posição na qual o monstro foi inserido na zona de monstros.
 	 */
-	int invocarMonstro(Monstro monstro,  PosicaoMonstro posicaoMonstro);
+	int invocarMonstro(Monstro monstro,  PosicaoMonstro posicaoMonstro) throws SummonedTributeException, NoSpaceZoneException, AlreadySummonedMonsterException;
 	
 	/**
 	 * Funçãoo utilizada para realizar o ataque de um monstro do jogador atual
@@ -43,4 +48,13 @@ public interface iAcoesMonstros {
 	 * @param posicaoCartaTab posicao da carta no tabuleiro.
 	 */
 	void mudarPosicaoBatalha(Jogador jogador, int posicaoCartaTab);
+	
+	/**
+	 * Ativa o efeito de uma carta de monstro efeito,
+	 * @param jogadorAtivou jogador dono da carta que ativou o efeito.
+	 * @param cartaAtivou carta monstro efeito que teve o efeito ativado.
+	 * @param jogadorAlvo possivel jogador alvo do efeito.
+	 * @param cartaAlvo possivel carta alvo do efeito.
+	 */
+	void ativarEfeitoMonstro(Jogador jogadorAtivou, Carta cartaAtivou, Jogador jogadorAlvo, Carta cartaAlvo) throws EffectHasActivatedException;
 }

@@ -28,7 +28,7 @@ public class Tabuleiro {
 	
 
 	/**
-	 * Remove uma carta do topo do baralho e adiciona na m�o do jogador. 
+	 * Remove uma carta do topo do baralho e adiciona na mão do jogador. 
 	 */
 	public void comprar() {
 		
@@ -37,7 +37,8 @@ public class Tabuleiro {
 	}
 	
 	/**
-	 * Insere uma carta na mão do jogador.
+	 * Insere uma carta na mão do jogador e seta 
+	 * a localização da carta na mão.
 	 * @param carta carta que vai ser inserida na mão.
 	 */
 	public void inserirCartaMao( Carta carta ) {
