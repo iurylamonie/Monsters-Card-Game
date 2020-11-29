@@ -59,7 +59,7 @@ public class Campo {
 	 */
 	public void inserirCartaMonstro( Monstro monstro, int posicao) {
 		this.zonaMonstros[posicao] = monstro;
-		monstro.setLocalizacao(posicao);
+		if(monstro != null )monstro.setLocalizacao(posicao);
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class Campo {
 	 */
 	public void inserirCartaMagia( Magia magia, int posicao) {
 		this.zonaMagia[posicao] = magia;
-		magia.setLocalizacao(posicao);
+		if( magia != null )magia.setLocalizacao(posicao);
 	}
 	
 	/**
@@ -83,6 +83,7 @@ public class Campo {
 		monstro.setLocalizacao(-1);
 		this.inserirCartaMonstro(null, posicao);
 		monstro.setPosicaoMonstro(PosicaoMonstro.NAO_INVOCADO);
+		this.mudarAtivacaoEfeito(posicao, false);
 		return monstro;
 	}
 	

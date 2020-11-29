@@ -74,6 +74,14 @@ public class Duelo implements iAcoesMonstros, iAcoesMagia{
 		this.atualJogador = this.proxJogador;
 		this.proxJogador = temp;
 		
+		// Resetar os monstros que atacaram
+		Campo campo = this.dueladores.get(this.atualJogador).getCampo();
+		for(Monstro monstro: campo.getZonaMonstros()) {
+			if( monstro != null)
+				monstro.setBatalhou(false);;
+		}
+		
+		this.invocacaoMonstro = false;
 		this.faseAtual = Fase.COMPRA;
 		this.proximaFase(this.faseAtual);
 	}
@@ -186,7 +194,7 @@ public class Duelo implements iAcoesMonstros, iAcoesMagia{
 	 * Passa para o sistema qual jogador venceu o duelo.
 	 * @param vencedor o vencedor do duelo.
 	 */
-	private void vencedor( Jogador vencedor, String message ) throws WinnerException {
+	public void vencedor( Jogador vencedor, String message ) throws WinnerException {
 		throw new WinnerException("O jogador " + vencedor.getNome() + " venceu o duelo! " + message);
 	}
 	
@@ -207,8 +215,11 @@ public class Duelo implements iAcoesMonstros, iAcoesMagia{
 				
 				if( monstro.getNivel() <= 4 ) {
 					pos = camp.espacoLivreZonaMonstro();
+					monstro.setTurnoInvocacao( this.turnoAtual );
+					monstro.setPosicaoMonstro(posicaoMonstro);
 					camp.inserirCartaMonstro(monstro, pos);
 					camp.mudarAtivacaoEfeito(pos, false);
+					this.invocacaoMonstro = true;
 				} else if( monstro.getNivel() <= 7 ) {
 					
 					if( camp.quantidadeCartaMonstro() >= 2 ) {
@@ -244,8 +255,10 @@ public class Duelo implements iAcoesMonstros, iAcoesMagia{
 		}
 		
 		pos = camp.espacoLivreZonaMonstro();
+		monstro.setTurnoInvocacao(this.turnoAtual);
 		camp.inserirCartaMonstro(monstro, pos);
 		camp.mudarAtivacaoEfeito(pos, false);
+		this.invocacaoMonstro = true;
 		
 		return pos;
 	}

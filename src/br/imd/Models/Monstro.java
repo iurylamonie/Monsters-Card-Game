@@ -17,7 +17,11 @@ public class Monstro extends Carta {
 	private int turnoInvocacao;
 	private TipoClasse classe;
 	private PosicaoMonstro posicaoMonstro;
+	private boolean batalhou;
 	
+	
+
+
 	/**
 	 * Construtor padrão classe monstro. A atributo turnoInvocacao � iniciado com -1.
 	 * @param nome Nome da carta.
@@ -37,6 +41,8 @@ public class Monstro extends Carta {
 		this.turnoInvocacao = -1;
 		this.classe = classe;
 		this.posicaoMonstro = PosicaoMonstro.NAO_INVOCADO;
+		this.nivel = nivel;
+		this.batalhou = false;
 	}
 	
 	
@@ -86,6 +92,15 @@ public class Monstro extends Carta {
 
 	public void setPosicaoMonstro(PosicaoMonstro posicaoMonstro) {
 		this.posicaoMonstro = posicaoMonstro;
+	}
+	
+	public boolean isBatalhou() {
+		return batalhou;
+	}
+
+
+	public void setBatalhou(boolean batalhou) {
+		this.batalhou = batalhou;
 	}
 
 }

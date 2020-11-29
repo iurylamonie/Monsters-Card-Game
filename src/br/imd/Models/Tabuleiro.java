@@ -53,7 +53,7 @@ public class Tabuleiro {
 	 */
 	public Carta removerCartaMao(int posicao ) {
 		Carta carta = this.maoJogador.remove(posicao);
-		carta.setLocalizacao(-1);
+		//carta.setLocalizacao(-1);
 		return carta;
 	}
 	

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Scanner;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -31,6 +32,7 @@ public class Principal {
 	
 	public static void main(String args[]) {	
 		
+		System.out.println(Principal.class.getResource("../Components/SpaceComponent.fxml"));
 		
 		
 		/*
@@ -134,49 +136,13 @@ public class Principal {
 		
 		Duelo duelo = new Duelo(j1, j2);
 		
-		System.out.println("Jogador Atual: " + duelo.getAtualJogador().getNome());
-		System.out.println("Cartas na mão: ");
-		for( Carta carta: duelo.getDueladores().get(duelo.getAtualJogador()).getMaoJogador()) {
-			if( carta instanceof MonstroEfeito ) {
-				System.out.println(" Carta de Monstro Efeito -- Nome: " + carta.getNome() 
-				+ " -- Efeito: " + ((MonstroEfeito) carta).getDescricao()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			} else if( carta instanceof Monstro ) {
-				System.out.println(" Carta de Monstro -- Nome: " + carta.getNome() 
-				+ " -- ATK: " + ((Monstro) carta).getAtk()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao() );
-			} else if( carta instanceof MagiaNormal ) {
-				System.out.println(" Cartas de Magia Normal -- Nome: " + carta.getNome() 
-				+ " -- Efeito: " + ((MagiaNormal) carta).getDescricao()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			} else if( carta instanceof MagiaEquipamento) {
-				System.out.println(" Cartas de Magia Equipamento -- Nome: " + carta.getNome() 
-				+ " -- Efeito: " + ((MagiaEquipamento) carta).getDescricao()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			}
-		}
+		Scanner ler = new Scanner(System.in);
+		System.out.println("O jogador inicial: " + duelo.getAtualJogador().getNome());
 		
-		System.out.println("Proximo Jogador: " + duelo.getProxJogador().getNome());
-		System.out.println("Cartas na mão: ");
-		for( Carta carta: duelo.getDueladores().get(duelo.getProxJogador()).getMaoJogador()) {
-			if( carta instanceof MonstroEfeito ) {
-				System.out.println(" Carta de Monstro Efeito -- Nome: " + carta.getNome() 
-				+ " -- Efeito: " + ((MonstroEfeito) carta).getDescricao() + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			} else if( carta instanceof Monstro ) {
-				System.out.println(" Carta de Monstro -- Nome: " + carta.getNome() 
-				+ " -- ATK: " + ((Monstro) carta).getAtk()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			} else if( carta instanceof MagiaNormal ) {
-				System.out.println(" Cartas de Magia Normal -- Nome: " + carta.getNome() 
-				+ " -- Efeito: " + ((MagiaNormal) carta).getDescricao()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			} else if( carta instanceof MagiaEquipamento) {
-				System.out.println(" Cartas de Magia Equipamento -- Nome: " + carta.getNome() 
-				+ " -- Efeito: " + ((MagiaEquipamento) carta).getDescricao()  + 
-				" -- Posição na Mão: " + carta.getLocalizacao());
-			}
-		}
+		//System.out.println(" 0 - Invocar Monstro - 1 - In")
+		
+		
+		
 	
 	}
 	
