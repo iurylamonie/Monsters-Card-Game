@@ -122,6 +122,29 @@ public class GameConsole {
 		}
 	}
 	
+	/**
+	 * Muda a posição de uma monstro do campo do jogador atual.
+	 * @param duelo
+	 */
+	private static void mudar_posicao_batalha(Duelo duelo) {
+		monstrar_zona_monstro(duelo.getAtualJogador(), duelo);
+		System.out.print("Informe o indice do monstro que deseja mudar de posição: ");
+		Scanner leitor = new Scanner(System.in);
+		Campo campo = duelo.getDueladores().get(duelo.getAtualJogador()).getCampo();
+		int op = leitor.nextInt();
+		if( op >= 0 && op < 3) {
+			Monstro monstro = campo.getCartaMonstro(op);
+			
+			if(monstro != null) {
+				try {
+					duelo.mudarPosicaoBatalha(monstro);
+				} catch (NotChangeBattlePositionException e) {
+					printWarning(e.getMessage());
+				}
+			} else printWarning("Indice inválido");
+		} else printWarning("Indice inválido");
+	}
+	
 	private static void batalhar(Duelo duelo) {
 		
 		Campo campo = duelo.getDueladores().get(duelo.getAtualJogador()).getCampo();
@@ -151,7 +174,7 @@ public class GameConsole {
 				
 				if( op == i ) {
 					Monstro monstro = campo.getCartaMonstro(op);
-					// Verificar se existe monstro no campo inimigo, se naot iver ataca direto
+					// Verificar se existe monstro no campo inimigo, se nao tiver ataca direto
 					if( campoOp.quantidadeCartaMonstro() == 0 ) {
 						
 						try {
@@ -204,25 +227,7 @@ public class GameConsole {
 		} else printWarning("Você não possue monstros disponiveis para batalhar");
 		
 	}
-	private static void mudar_posicao_batalha(Duelo duelo) {
-		monstrar_zona_monstro(duelo.getAtualJogador(), duelo);
-		System.out.print("Informe o indice do monstro que deseja mudar de posição: ");
-		Scanner leitor = new Scanner(System.in);
-		Campo campo = duelo.getDueladores().get(duelo.getAtualJogador()).getCampo();
-		int op = leitor.nextInt();
-		if( op >= 0 && op < 3) {
-			Monstro monstro = campo.getCartaMonstro(op);
-			
-			if(monstro != null) {
-				try {
-					duelo.mudarPosicaoBatalha(monstro);
-				} catch (NotChangeBattlePositionException e) {
-					printWarning(e.getMessage());
-				}
-			} else printWarning("Indice inválido");
-		} else printWarning("Indice inválido");
-	}
-	
+
 	private static void ativar_efeito( Duelo duelo ) {
 		System.out.println("# Deseja ativar efeito de um Monstro(1) ou Magia(2). Informe o que deseja: ");
 		Scanner leitor = new Scanner(System.in);
@@ -283,7 +288,7 @@ public class GameConsole {
 									int opea = leitor.nextInt();
 									
 									for( int indice : indiceOp ) {
-										if( indice == ope ) {
+										if( indice == opea ) {
 											Monstro monstroOp = campoOp.getCartaMonstro(indice);
 											try {
 												duelo.ativarEfeitoMonstro(duelo.getAtualJogador(), monstro, duelo.getProxJogador(), monstroOp);
@@ -353,7 +358,7 @@ public class GameConsole {
 					}
 				}
 			}
-			else printWarning("Não possue monstros que possam ativar o efeito.");
+			else printWarning("Não possue magias que possam ativar o efeito.");
 			
 			break;
 		default:
@@ -362,13 +367,18 @@ public class GameConsole {
 		}
 	}
 	
+	/**
+	 * Passa para a proxima fase do turno.
+	 * @param duelo
+	 */
 	private static void proxima_fase(Duelo duelo) {
 		try {
 			duelo.proximaFase(duelo.getFaseAtual());
 		} catch (NoCardDrawException e) {
-			e.printStackTrace();
+			printWarning(e.getMessage());
+			System.exit(0);
 		} catch (HandFullException e) {
-			e.printStackTrace();
+			printWarning(e.getMessage());
 		}
 	}
 	
@@ -468,6 +478,12 @@ public class GameConsole {
 						op = leitor.nextInt();
 						if( op == 1 ) {
 							Carta carta = duelo.getDueladores().get(duelo.getAtualJogador()).removerCartaMao(opi);
+							if(opad == 0) ((Monstro)carta).setPosicaoMonstro(PosicaoMonstro.ATAQUE);
+							else if( opad == 1) ((Monstro)carta).setPosicaoMonstro(PosicaoMonstro.DEFESA);
+							else {
+								printWarning("Posição inválida");
+								return;
+							}
 							invocacao_tributo( e.getQuantidadeTributos(), ((Monstro) carta), duelo);
 						}
 						else if( op != 2 ) { 

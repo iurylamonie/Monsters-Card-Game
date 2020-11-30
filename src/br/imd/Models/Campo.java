@@ -45,9 +45,9 @@ public class Campo {
 	 * @return inteiro
 	 */
 	public int espacoLivreZonaMagia() {
-		if( this.zonaMonstros[0] == null ) return 0;
-		else if( this.zonaMonstros[1] == null ) return 1;
-		else if( this.zonaMonstros[2] == null ) return 2;
+		if( this.zonaMagia[0] == null ) return 0;
+		else if( this.zonaMagia[1] == null ) return 1;
+		else if( this.zonaMagia[2] == null ) return 2;
 		
 		return -1;
 	}
